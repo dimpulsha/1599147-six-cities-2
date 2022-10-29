@@ -1,0 +1,25 @@
+import chalk from 'chalk';
+import { CliCommandInterface } from './cli.interface.js';
+import { CLICommandList } from './cli-command-list.enum.js';
+
+export default class HelpCommand implements CliCommandInterface {
+  public readonly name = CLICommandList.Help;
+
+  public async execute(): Promise<void>  {
+    console.log(`
+     программа управления REST API
+
+          вызов: cli.js --<command> [--arguments]
+
+         Команды:
+
+            ${chalk.blue('--version:                   # выводит номер версии') }
+            ${chalk.red('--help:                      # справка (этот текст). Команда по умолчанию')}
+            ${chalk.green('--import <path> <DB-login> <DB-password> <DB-server> <DB-name> <salt-phrase>  :  # импортирует данные из TSV в базу данных. Пример: --import ./_temp/test-data.tsv admin admin 127.0.0.1 citiesDB 123456')}
+            ${chalk.yellow('--generate <n> <path> <url> # генерирует произвольное количество тестовых данных')}
+
+        Вызов без параметров соответствует вызову: cli.js --help
+    `);
+  }
+
+}

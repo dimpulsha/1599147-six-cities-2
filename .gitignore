@@ -10,3 +10,4 @@
 coverage
 *.log
 six-cities-2.code-workspace
+_temp/
