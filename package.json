@@ -11,6 +11,7 @@
   "scripts": {
     "start": "npm run build && node ./dist/main.js",
     "build": "npm run clean && npm run compile",
+    "mock:server": "json-server ./mocks/mock-server-data.json --port 3123",
     "lint": "eslint src/ --ext .ts",
     "compile": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
@@ -33,6 +34,8 @@
     "npm": "^8.1.0"
   },
   "dependencies": {
-    "chalk": "^5.1.2"
+    "chalk": "^5.1.2",
+    "dayjs": "^1.11.6",
+    "got": "^12.5.2"
   }
 }

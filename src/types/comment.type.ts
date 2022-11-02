@@ -1,9 +1,9 @@
-import { User } from './user.type.js';
+import { UserType } from './user.type.js';
 
-export type Comment = {
+export type CommentType = {
   commentText: string;
   commentDateTime?: Date;
   rate: number;
-  commentOwner?: User;
+  commentOwner?: UserType;
   offerId: string;
 }

@@ -10,6 +10,9 @@ import { CLICommandList } from './cli-command-list.enum.js';
 // класс для описания команды
 export default class VersionCommand implements CliCommandInterface {
 
+  // выносим константы отдельно
+  private static readonly DEFAULT_VERSION_FILE = './package.json';
+  private static readonly DEFAULT_ENCODING = 'utf-8';
   // name - требуется по интерфейсу
   public readonly name = CLICommandList.Version;
 
@@ -18,7 +21,7 @@ export default class VersionCommand implements CliCommandInterface {
   // метод приватный т/к/ нужен только внутри
   private getVersion(): string {
     // читаем файл
-    const rawJSON = readFileSync('./package.json', 'utf-8');
+    const rawJSON = readFileSync(VersionCommand.DEFAULT_VERSION_FILE, VersionCommand.DEFAULT_ENCODING);
     // парсим json в объект
     const contentJSON = JSON.parse(rawJSON);
     // возвращаем поле с версией

@@ -31,18 +31,11 @@ export default class CLIApplication {
     return cliArguments.reduce((acc, item) => {
       if (item.startsWith(CLIApplication.COMMAND_PREFIX)) {
         acc[item] = [];
-
-        console.log(acc);
-
         command = item;
       } else if (command && item) {
         acc[command].push(item);
-
-        console.log(acc);
       }
-
       return acc;
-
     }, parsedCommand);
   }
 
@@ -50,15 +43,12 @@ export default class CLIApplication {
   // модуль регистрации - берем массив созданных объектов и
   public registerCommands(commandList: CliCommandInterface[]): void {
 
-    console.log(`commandList ${commandList}`);
+    console.log(commandList);
 
     commandList.reduce((acc, command) => {
       const cliCommand = command;
       // в аккумуляторе acc создается пара ключ-значение
       acc[cliCommand.name] = cliCommand;
-
-      console.log(`acc ${JSON.stringify(acc)}`);
-
       return acc;
     }, this.commands);
   }
@@ -66,9 +56,6 @@ export default class CLIApplication {
   // вспомогательный метод getCommand - из перечня команд -  commands(массив: имя команды + функционал(объект)) достаем функционал команды. если имя не зарегистрированное - возвращаем дефолтную команду)
 
   private getCommand(commandName: string): CliCommandInterface {
-
-    console.log(`commands[commandName] = ${JSON.stringify(this.commands[commandName])}`);
-
     return this.commands[commandName] ?? this.commands[CLIApplication.DEFAULT_COMMAND];
   }
 
@@ -77,18 +64,27 @@ export default class CLIApplication {
   public processingCommand(argv: string[]): void {
     // 1 парсим - получаем объект команды имя - параметры
     const parsedCommand = this.parseCommand(argv);
-    console.log(`processingCommand - parsedCommand = ${JSON.stringify(parsedCommand)}`);
+    console.log(parsedCommand);
+
+
     // 2 - достаем имя команды из распарсенной строки
     const [commandName] = Object.keys(parsedCommand);
-    console.log(`processingCommand - commandName ${commandName}`);
+
+    // todo !!! можно другую логику написать:
+    // если имя команды пустое, то команда - дефолтная,  далее вызываем команду с аргументами
+    // команду и аргументы можно достать за один проход через Object.entries()
+    // вот так красиво:
+    //  for (const [name, args] of Object.entries(parsedCommands)) {
+    //   this.getCommand(name).execute(...args);
+    // }
 
     // 3 - получаем объект (функционал) из перечня зарегистрированных команд (объектов)
     const command = this.getCommand(commandName);
-    console.log(`processingCommand command - ${JSON.stringify(command)}`);
+    // console.log(`processingCommand command - ${JSON.stringify(command)}`);
 
     // 4 - получаем аргументы из parsedCommand по ключу достаем параметры, а если нет - возвращаем пустой массив
     const argvList = parsedCommand[commandName] ?? [];
-    console.log(`processingCommand argvList - ${argvList}`);
+    // console.log(`processingCommand argvList - ${argvList}`);
 
     // 5 вызываем метол execute у объекта, который хранится в command и предаем ему аргументы (и разбираем их через spread ...)
     command.execute(...argvList);

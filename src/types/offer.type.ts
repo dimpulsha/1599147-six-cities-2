@@ -1,6 +1,6 @@
 import { City } from './city.type.js';
 import { Location } from './location.type.js';
-import { RoomType } from './room-type.enum.js';
+import { RoomKind } from './room-type.enum.js';
 import { Features } from './features.type.js';
 import { User } from './user.type.js';
 
@@ -8,13 +8,13 @@ export type Offer = {
   offerTitle: string;
   offerDescription: string;
   publicationDate: Date;
-  city: City['name'];
+  city: City;
   previewImg: string;
   offerImg: string[];
   isPremium: boolean;
   isFavorite: boolean;
   rating?: number;
-  offerType: RoomType;
+  roomKind: RoomKind;
   roomsCount: number;
   guestsCount: number;
   price: number;
