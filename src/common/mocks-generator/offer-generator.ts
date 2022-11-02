@@ -34,7 +34,6 @@ export default class OfferGenerator implements MocksGeneratorInterface {
     // фаворит, список юзеров для фаворита, рейтинг, кол-во комментов проставим дефолтными значениями при заполнении
     // связанные моки (пользователь, город, фаворит ) будем заполнять идентификаторами на этапе записи в базу
 
-
     const offerTitle = getRandomItem<string>(this.mocksTemplate.offerTitle);
     const offerDescription = getRandomItem<string>(this.mocksTemplate.offerDescription);
     const publicationDate = dayjs().subtract(generateRandomValue(OfferGenerator.FIRST_WEEK_DAY, OfferGenerator.LAST_WEEK_DAY), 'day').toISOString();

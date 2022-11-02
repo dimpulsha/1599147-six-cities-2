@@ -1,9 +1,10 @@
-import { appendFile } from 'fs/promises';
+// import { appendFile } from 'fs/promises';
 import got from 'got';
 import { CliCommandInterface } from './cli.interface.js';
 import { CLICommandList } from './cli-command-list.enum.js';
 import { MocksDataType } from '../types/mocks-data.type.js';
 import OfferGenerator from '../common/mocks-generator/offer-generator.js';
+import TSVFileWriter from '../common/file-writer.service/file-writer-TSV.service.js';
 
 export default class GenerateCommand implements CliCommandInterface {
 
@@ -24,9 +25,11 @@ export default class GenerateCommand implements CliCommandInterface {
 
       // логично всю функциональность поместить внутрь - если сервера нет, то и генерировать нечего.
       const offerGenerator = new OfferGenerator(this.initialData);
+      const writeStream = new TSVFileWriter(fileName);
 
       for (let i = 0; i < offerCount; i++) {
-        await appendFile(fileName, `${offerGenerator.generate()}\n`, 'utf8');
+        // await appendFile(fileName, `${offerGenerator.generate()}\n`, 'utf8');
+        await writeStream.write(offerGenerator.generate());
       }
 
     } catch {
