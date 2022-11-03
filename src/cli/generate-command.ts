@@ -37,8 +37,9 @@ export default class GenerateCommand implements CliCommandInterface {
         await writeStream.write(offerGenerator.generate());
       }
 
-    } catch {
+    } catch(err) {
       console.log(`Can't load initial data from ${url}`);
+      console.log(`${getErrorMessage(err)}`);
     }
 
 
