@@ -1,7 +1,7 @@
 // понадобятся типы данных, функции по генерации, граничные значения для параметров (берем из конфигов, если по ним нужно проверять и боевые данные или ставим здесь, если дальше моков они не уходят)
 import dayjs from 'dayjs';
 import { MocksGeneratorInterface } from './mocks-generator.interface.js';
-import { MocksDataType, MocksUserType } from '../../types/mocks-data.type';
+import { MocksDataType, MocksUser } from '../../types/mocks-data.type';
 import { City } from '../../types/city.type.js';
 import { RoomKind } from '../../types/room-type.enum.js';
 import { generateRandomValue, getRandomItems, getRandomItem, randomBoolean } from '../../utils/random.js';
@@ -22,7 +22,7 @@ export default class OfferGenerator implements MocksGeneratorInterface {
     return [city.name, city.location.latitude, city.location.longitude, city.location.zoom].join(Splitter.ItemSplitter);
   }
 
-  private createOwnerMocks(user: MocksUserType): string {
+  private createOwnerMocks(user: MocksUser): string {
     const isProUser = randomBoolean().toString();
     return [user.userName, user.email, user.avatarImg, isProUser].join(Splitter.ItemSplitter);
   }

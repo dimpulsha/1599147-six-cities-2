@@ -41,7 +41,5 @@ export default class GenerateCommand implements CliCommandInterface {
       console.log(`Can't load initial data from ${url}`);
       console.log(`${getErrorMessage(err)}`);
     }
-
-
   }
 }

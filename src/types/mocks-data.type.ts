@@ -1,7 +1,7 @@
-import { CityType } from './city.type.js';
-import { FeaturesType } from './features.type.js';
+import { City } from './city.type.js';
+import { Features } from './features.type.js';
 
-export type MocksUserType = {
+export type MocksUser = {
   userName: string;
   email: string;
   avatarImg: string;
@@ -10,9 +10,9 @@ export type MocksUserType = {
 export type MocksDataType = {
   offerTitle: string[];
   offerDescription: string[];
-  city: CityType[];
+  city: City[];
   previewImg: string[];
   offerImg: string[];
-  features: FeaturesType;
-  owner: MocksUserType[];
+  features: Features;
+  owner: MocksUser[];
 }

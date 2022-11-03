@@ -5,7 +5,7 @@
 //  импортируем класс приложения и классы команд
 import VersionCommand from './cli/version-command.js';
 import HelpCommand from './cli/help-command.js';
-import CLIApplication from './app/cli-application.js';
+import CLIApplication from './app/cli-app.js';
 import ImportCommand from './cli/import-command.js';
 import GenerateCommand from './cli/generate-command.js';
 
