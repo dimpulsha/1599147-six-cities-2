@@ -34,8 +34,13 @@
     "npm": "^8.1.0"
   },
   "dependencies": {
+    "@types/convict": "^6.1.1",
+    "@types/convict-format-with-validator": "^6.0.2",
     "chalk": "^5.1.2",
+    "convict": "^6.2.3",
+    "convict-format-with-validator": "^6.2.0",
     "dayjs": "^1.11.6",
+    "dotenv": "^16.0.3",
     "got": "^12.5.2",
     "pino": "^8.7.0",
     "pino-pretty": "^9.1.1"
