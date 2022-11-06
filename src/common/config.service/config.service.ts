@@ -26,10 +26,10 @@ export default class ConfigService implements ConfigInterface {
     }
     this.config = configSchema.getProperties(); // читаем все объекты из конфига
     this.logger.info('.env file found and successfully parsed!');
+    console.log(this.config);
   }
 
   public getConfigItem<T extends keyof ConfigSchema>(key: T) {
-    console.log(this.config);
 
     return this.config[key];
   }
