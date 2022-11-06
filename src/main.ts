@@ -4,7 +4,7 @@ import LoggerService from './common/logger-service/logger.service.js';
 import ConfigService from './common/config.service/config.service.js';
 
 const logger = new LoggerService;
-const config = new ConfigService;
+const config = new ConfigService(logger);
 
 const RESTApp = new RESTApplication(logger, config);
 

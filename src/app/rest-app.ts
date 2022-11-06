@@ -14,7 +14,7 @@ export default class RESTApplication {
   //public async надо.  забыл, что приложение асинхронное внутри
   public async init() {
     this.logger.info('Application initialization ...');
-    // console.log(this.config.get('PATH'));
-    this.logger.info(String(this.config.getConfigItem('PAT')));
+    console.log(this.config.getConfigAll());
+    // this.logger.info(String(this.config.getConfigItem('PAT')));
   }
 }
