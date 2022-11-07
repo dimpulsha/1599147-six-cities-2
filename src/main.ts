@@ -1,12 +1,10 @@
 //  точка входа. тут создается экземпляр приложения
+import 'reflect-metadata';
 import RESTApplication from './app/rest-app.js';
-import LoggerService from './common/logger-service/logger.service.js';
-import ConfigService from './common/config.service/config.service.js';
+import { appContainer } from './app/app-container.js';
+import { Component } from './app/app-component.js';
 
-const logger = new LoggerService;
-const config = new ConfigService(logger);
-
-const RESTApp = new RESTApplication(logger, config);
+const RESTApp = appContainer.get<RESTApplication>(Component.RESTApplication);
 
 RESTApp.init();
 

@@ -1,12 +1,18 @@
 // основной файл приложения
+import 'reflect-metadata';
+import { inject, injectable } from 'inversify';
+import { Component } from './app-component.js';
 import { LoggerInterface } from '../common/logger-service/logger.interface.js';
 import { ConfigInterface } from '../common/config.service/config.interface.js';
 
+@injectable()
 export default class RESTApplication {
   private logger!: LoggerInterface;
   private config!: ConfigInterface;
 
-  constructor(logger: LoggerInterface, config: ConfigInterface) {
+  constructor(
+    @inject(Component.LoggerInterface) logger: LoggerInterface,
+    @inject(Component.ConfigInterface) config: ConfigInterface) {
     this.logger = logger;
     this.config = config;
   }
@@ -14,7 +20,6 @@ export default class RESTApplication {
   //public async надо.  забыл, что приложение асинхронное внутри
   public async init() {
     this.logger.info('Application initialization ...');
-    console.log(this.config.getConfigAll());
-    // this.logger.info(String(this.config.getConfigItem('PAT')));
+    this.logger.info(`Get value from env $PORT: ${(this.config.getConfigItem('PORT'))}`);
   }
 }

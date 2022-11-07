@@ -1,15 +1,17 @@
 import { config } from 'dotenv';
+import { inject, injectable } from 'inversify';
+import { Component } from '../../app/app-component.js';
 import { ConfigInterface } from './config.interface.js';
 import { ConfigSchema, configSchema } from './config.schema.js';
 import { LoggerInterface } from '../logger-service/logger.interface.js';
 import { getErrorMessage } from '../../utils/get-error.js';
-// todo - логгер тут нужен
 
+@injectable()
 export default class ConfigService implements ConfigInterface {
   private config: ConfigSchema;
   private logger: LoggerInterface;
 
-  constructor(logger: LoggerInterface) {
+  constructor(@inject(Component.LoggerInterface) logger: LoggerInterface) {
     this.logger = logger;
     const parseConfig = config();// считываем .env
     // если что - кидаем ошибку
@@ -18,6 +20,7 @@ export default class ConfigService implements ConfigInterface {
     }
     configSchema.load({}); // читаем объект
     try {
+      // валидация
     // todo - возможно как-то обработать эту ошибку, чтобы системный лог не вылезал?
       configSchema.validate({ allowed: 'strict', output: this.logger.info });
     } catch (err) {
@@ -26,16 +29,16 @@ export default class ConfigService implements ConfigInterface {
     }
     this.config = configSchema.getProperties(); // читаем все объекты из конфига
     this.logger.info('.env file found and successfully parsed!');
-    console.log(this.config);
+    this.logger.debug(JSON.stringify(this.config));
   }
 
   public getConfigItem<T extends keyof ConfigSchema>(key: T) {
-
+    this.logger.debug(`Read config param for key: ${key}`);
     return this.config[key];
   }
 
   public getConfigAll(): ConfigSchema {
+    this.logger.debug('Read all config by method \'getConfigAll\'');
     return this.config;
   }
-
 }
