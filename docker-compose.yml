@@ -3,7 +3,7 @@ services:
   mongodb:
     image: mongo
     restart: always
-    container_name: mongodb
+    container_name: mongodb-2
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
@@ -15,7 +15,7 @@ services:
   mongodb-express:
     image: mongo-express
     restart: always
-    container_name: mongo-express
+    container_name: mongo-express-2
     ports:
       - 8081:8081
     environment:
