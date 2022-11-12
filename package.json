@@ -10,6 +10,7 @@
   "main": "main.js",
   "scripts": {
     "start": "npm run build && node ./dist/main.js",
+    "start:dev":"npm run ts ./src/main.ts",
     "build": "npm run clean && npm run compile",
     "mock:server": "json-server ./mocks/mock-server-data.json --port 3123",
     "lint": "eslint src/ --ext .ts",
@@ -34,6 +35,7 @@
     "npm": "^8.1.0"
   },
   "dependencies": {
+    "@typegoose/typegoose": "^9.12.1",
     "@types/convict": "^6.1.1",
     "@types/convict-format-with-validator": "^6.0.2",
     "chalk": "^5.1.2",
@@ -43,7 +45,7 @@
     "dotenv": "^16.0.3",
     "got": "^12.5.2",
     "inversify": "^6.0.1",
-    "mongoose": "^6.7.2",
+    "mongoose": "^6.6.2",
     "pino": "^8.7.0",
     "pino-pretty": "^9.1.1",
     "reflect-metadata": "^0.1.13"
