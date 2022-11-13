@@ -23,6 +23,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
     this.isProUser = data.isProUser;
   }
 
+  // если стоит декаратор prop, то это поле сохраняется в БД
   @prop({ required: true })
   // ого - нужно права доступа указывать
   public userName!: string;
@@ -38,7 +39,9 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   private password!: string ;
 
   @prop({required: true})
-    isProUser!: boolean;
+  public isProUser!: boolean;
+
+  public anyField?: string;
 
   public createPassword(password: string, salt: string) {
     this.password = createSHA256(password, salt);
