@@ -1,0 +1,32 @@
+// import typegoose, { getModelForClass, defaultClasses, ModelOptions } from '@typegoose/typegoose';
+// import { UserEntity } from '../user/user.entity';
+
+// const { prop, modelOptions } = typegoose;
+
+// export interface CommentsEntity extends defaultClasses.Base { }
+
+// @modelOptions({
+//   schemaOptions: {
+//     collection: 'comments'
+//   }
+// })
+
+// export class CommentsEntity extends defaultClasses.TimeStamps {
+
+//   @prop({required:true})
+//     commentText!: string;
+
+//   @prop({
+//     required: true,
+//     default: () => Date()})
+//     commentDateTime!: Date;
+
+//   @prop({required: true})
+//     rate!: number;
+
+//   @prop({})
+//     commentOwner?: User;
+
+//   @prop({})
+//     offerId: string;
+// }

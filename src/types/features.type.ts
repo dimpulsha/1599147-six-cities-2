@@ -1,1 +1,1 @@
-export type Features = string[];
+export type Feature = { name: string};
